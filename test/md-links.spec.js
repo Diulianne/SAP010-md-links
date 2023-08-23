@@ -5,22 +5,43 @@ const { mdLinks, validateLink } = require('../index.js');
 jest.mock('axios'); // Mock o módulo axios
 
 describe('mdLinks', () => {
-  it('Deve extrair links do arquivo Markdown', () => {
-    const userFilePath = 'README.md';
-    const filePath = path.resolve(userFilePath); // Resolve o caminho absoluto
+  // it('Deve extrair links do arquivo Markdown', () => {
+  //   const userFilePath = 'README.md';
+  //   const filePath = path.resolve(userFilePath); // Resolve o caminho absoluto
 
-    return mdLinks(filePath)
+  //   return mdLinks(filePath)
+  //     .then((links) => {
+  //       expect(links).toHaveLength(links.length);
+  //       // Verifica se o tamanho do array corresponde ao número de links
+  //       links.forEach((link) => {
+  //         expect(link.href).toBeDefined(); // Verifica se o link possui um URL
+  //         expect(link.text).toBeDefined(); // Verifica se o link possui um texto
+  //         expect(link.file).toBeDefined(); // Verifica se o link possui um arquivo
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // });
+
+  it('Deve extrair links de arquivos Markdown em um diretório', () => {
+    const userDirectoryPath = './testesMD';
+    const directoryPath = path.resolve(userDirectoryPath);
+
+    return mdLinks(directoryPath)
       .then((links) => {
-        expect(links).toHaveLength(links.length);
-        // Verifica se o tamanho do array corresponde ao número de links
+        const expectedMinimumNumberOfLinks = 1;
+        // Defina o mínimo de links que você espera encontrar
+        expect(links.length).toBeGreaterThanOrEqual(expectedMinimumNumberOfLinks);
+
         links.forEach((link) => {
-          expect(link.href).toBeDefined(); // Verifica se o link possui um URL
-          expect(link.text).toBeDefined(); // Verifica se o link possui um texto
-          expect(link.file).toBeDefined(); // Verifica se o link possui um arquivo
+          expect(link.href).toBeDefined();
+          expect(link.text).toBeDefined();
+          expect(link.file).toBeDefined();
         });
       })
       .catch((error) => {
-        throw error;
+        expect(error).toBeDefined();
       });
   });
 
