@@ -36,7 +36,7 @@ describe('mdLinks', () => {
     const nonMarkdownFilePath = path.resolve(__dirname, 'arquivo.txt');
     return mdLinks(nonMarkdownFilePath).catch((error) => {
       expect(error).toBeDefined();
-      expect(error.message).toBe('Arquivo não é Markdown');
+      expect(error.message).toBe('Arquivo ou diretório não encontrado');
     });
   });
 });
