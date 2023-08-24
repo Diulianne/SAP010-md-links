@@ -12,7 +12,6 @@ describe('mdLinks', () => {
     return mdLinks(directoryPath)
       .then((links) => {
         const expectedMinimumNumberOfLinks = 1;
-        // Defina o mínimo de links que você espera encontrar
         expect(links.length).toBeGreaterThanOrEqual(expectedMinimumNumberOfLinks);
 
         links.forEach((link) => {
