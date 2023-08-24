@@ -6,8 +6,9 @@ if (process.argv.length < 3) {
 }
 
 const path = process.argv[2];
-// const path =  './README.md' // process.argv[2];
+// const path =  './README.md'
 const validate = process.argv.includes('--validate');
+const stats = process.argv.includes('--stats');
 
 mdLinks(path)
   .then((linksObject) => {
@@ -17,18 +18,31 @@ mdLinks(path)
     return linksObject;
   })
   .then((resultLinks) => {
-    resultLinks.forEach((link) => {
-      console.log(`\nhref: ${link.href}`);
-      console.log(`text: ${link.text}`);
-      console.log(`file: ${link.file}`);
+    if (stats) {
+      const totalLinks = resultLinks.length;
+      const uniqueLinks = new Set(resultLinks.map((link) => link.href)).size;
 
-      if (validate && link.status !== undefined && link.ok !== undefined) {
-        console.log(`status: ${link.status}`);
-        console.log(`ok: ${link.ok}`);
+      console.log(`Total: ${totalLinks}`);
+      console.log(`Unique: ${uniqueLinks}`);
+
+      if (validate) {
+        const brokenLinks = resultLinks.filter((link) => link.ok === 'FAIL').length;
+        console.log(`Broken: ${brokenLinks}`);
       }
+    } else {
+      resultLinks.forEach((link) => {
+        console.log(`\nhref: ${link.href}`);
+        console.log(`text: ${link.text}`);
+        console.log(`file: ${link.file}`);
 
-      console.log('------------------------------------------------------------------------');
-    });
+        if (validate && link.status !== undefined && link.ok !== undefined) {
+          console.log(`status: ${link.status}`);
+          console.log(`ok: ${link.ok}`);
+        }
+
+        console.log('------------------------------------------------------------------------');
+      });
+    }
   })
   .catch((error) => {
     console.error('Erro:', error.message);
