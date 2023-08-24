@@ -15,10 +15,7 @@ function mdLinks(filePath) {
         } if (stats.isDirectory()) {
           return fs.readdir(absolutePath)
             .then((fileList) => {
-              const mdFiles = fileList
-                .filter((file) => validExtensions.includes(path.extname(file)));
-
-              const allLinksPromises = mdFiles.map((file) => {
+              const allLinksPromises = fileList.map((file) => {
                 const fileAbsolutePath = path.join(absolutePath, file);
                 return mdLinks(fileAbsolutePath);
               });
