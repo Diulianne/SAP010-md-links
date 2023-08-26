@@ -2,7 +2,7 @@
   "name": "md-links-diulianne",
   "author": "Diulianne Oliveira",
   "description": "Análise e validação de links presentes em arquivos .md",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "main": "cli.js",
   "type": "commonjs",
   "engines": {

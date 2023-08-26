@@ -29,17 +29,17 @@ npm i md-links-diulianne
 
 A ferramenta é utilizada da seguinte forma:
 ```
-md-links-diulianne <arquivo> [opções]
+md-links <arquivo> [opções]
 ```
 
 Exemplo:
 ```
-md-links-diulianne arquivo.md --validate
+md-links arquivo.md --validate
 ```
 
 ## 3. Funcionalidades
 
-#### Ao usar `md-links-diulianne <nome do arquivo>`, são fornecidas informações básicas, como nome do arquivo, texto e link.
+#### Ao usar `md-links <nome do arquivo>`, são fornecidas informações básicas, como nome do arquivo, texto e link.
 
 ![Captura de tela 2023-08-25 174042](https://github.com/Diulianne/SAP010-md-links/assets/89495506/4e6b09ea-65ce-468a-8ba2-76fbc26c3a33)
 
