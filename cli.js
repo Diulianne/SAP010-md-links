@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 const chalk = require('chalk');
 const { mdLinks, validateLink } = require('./index.js');
 
 if (process.argv.length < 3) {
   console.error('Você precisa fornecer o caminho do arquivo como argumento.');
-  process.exit(1); 
+  process.exit(1);
 }
 
 const path = process.argv[2];
